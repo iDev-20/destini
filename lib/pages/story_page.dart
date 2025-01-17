@@ -1,3 +1,4 @@
+import 'package:destini/components/story_brain.dart';
 import 'package:flutter/material.dart';
 
 class StoryPage extends StatefulWidget {
@@ -8,6 +9,8 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
+  StoryBrain storyBrain = StoryBrain();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +20,12 @@ class _StoryPageState extends State<StoryPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Expanded(
+            Expanded(
               flex: 12,
               child: Center(
                 child: Text(
-                  'Story text will go here.',
-                  style: TextStyle(fontSize: 25.0),
+                  storyBrain.getStory() ?? '',
+                  style: const TextStyle(fontSize: 25.0),
                 ),
               ),
             ),
