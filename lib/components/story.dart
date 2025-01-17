@@ -3,9 +3,9 @@ class Story {
   String? firstChoice;
   String? secondChoice;
 
-  Story({String? storyTitle, String? firstOption, String? secondOption}) {
+  Story({String? storyTitle, String? choice1, String? choice2}) {
     title = storyTitle;
-    firstChoice = firstOption;
-    secondChoice = secondOption;
+    firstChoice = choice1;
+    secondChoice = choice2;
   }
 }
