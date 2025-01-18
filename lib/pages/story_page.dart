@@ -19,7 +19,8 @@ class _StoryPageState extends State<StoryPage> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/background.png'), fit: BoxFit.cover,
+            image: AssetImage('images/background.png'),
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
@@ -37,13 +38,18 @@ class _StoryPageState extends State<StoryPage> {
             Expanded(
               flex: 2,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    storyBrain.nextStory(1);
+                  });
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
                 ),
-                child: const Text(
-                  'Choice 1',
-                  style: TextStyle(fontSize: 20.0),
+                child: Text(
+                  storyBrain.getChoice1() ?? '',
+                  style: const TextStyle(fontSize: 20.0),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
@@ -52,14 +58,22 @@ class _StoryPageState extends State<StoryPage> {
             ),
             Expanded(
               flex: 2,
-              child: TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                ),
-                child: const Text(
-                  'Choice 2',
-                  style: TextStyle(fontSize: 20.0),
+              child: Visibility(
+                visible: storyBrain.buttonShouldBeVisible(),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      storyBrain.nextStory(2);
+                    });
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  child: Text(
+                    storyBrain.getChoice2() ?? '',
+                    style: const TextStyle(fontSize: 20.0),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
